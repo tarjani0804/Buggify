@@ -21,12 +21,12 @@ app.use(express.json());
 
 // Route to handle POST requests to '/business'
 app.post('/business', async (req, res) => {
-  try{
+  try {
     let token;
     console.log(`Business Endpoint Hit`);
     let number = '';
     for (let i = 0; i < 10; i++) {
-        number += Math.floor(Math.random() * 10);
+      number += Math.floor(Math.random() * 10);
     }
     const data1 = req.body;
     const hash = hasher(req.body.password);
@@ -37,19 +37,19 @@ app.post('/business', async (req, res) => {
     const user1 = new businessaccs(data1);
     const createUser1 = await user1.save();
     console.log(createUser1);
-    const login = await businessaccs.find({email: data1.email});
+    const login = await businessaccs.find({ email: data1.email });
     token = await login.generateAuthToken();
     console.log(token);
 
-    res.status(200).json({sucess:'sucessful'});
-  }catch(e){
+    res.status(200).json({ sucess: 'sucessful' });
+  } catch (e) {
     console.log(e);
-    res.status(400).send(JSON.stringify({result:'User Already Exists'}));
+    res.status(400).send(JSON.stringify({ result: 'User Already Exists' }));
   }
 
 });
 app.post('/researcher', async (req, res) => {
-  try{
+  try {
     console.log(`Researcher Endpoint Hit`);
     const data2 = req.body;
     console.log(data2);
@@ -58,8 +58,8 @@ app.post('/researcher', async (req, res) => {
     const user2 = new researcheraccs(data2);
     const createUser2 = await user2.save();
     console.log(createUser2);
-    res.status(200).send(JSON.stringify({result:'Researcher Account Created'}));
-  }catch(e){
+    res.status(200).send(JSON.stringify({ result: 'Researcher Account Created' }));
+  } catch (e) {
     console.log(e);
     res.status(400).send(e);
     // res.status(400).send(JSON.stringify({result:'User Already Exists'}));

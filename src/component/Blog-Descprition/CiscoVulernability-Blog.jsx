@@ -13,7 +13,6 @@ const Report = () => {
     }, []);
 
 
-
     const navigate = useNavigate()
     const gotoBlogs = () => {
         navigate('/academyBlogs');

@@ -135,6 +135,8 @@ const AcademyCourses = () => {
     const goto = (redirectLink) => {
         navigate(redirectLink);
     };
+
+
     const gotoGetStarted = () => {
         navigate('/AcademyGetStarted');
     };
